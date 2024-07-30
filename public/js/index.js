@@ -5,12 +5,14 @@ import 'core-js/stable';
 import { displayMap } from './leaflet';
 import { login, logout } from './login';
 import { updateSettings } from './updateSetting';
+import { bookTour } from './midtrans';
 
 const leaflet = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
 const logOutBtn = document.querySelector('.nav__el--logout');
 const updateForm = document.querySelector('.form-user-data');
 const passwordForm = document.querySelector('.form-user-password');
+const bookBtn = document.getElementById('book-tour');
 
 if (leaflet) {
   const locations = JSON.parse(leaflet.dataset.locations);
@@ -34,7 +36,6 @@ if (updateForm) {
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
-    console.log(form);
 
     updateSettings(form, 'data');
   });
@@ -63,3 +64,22 @@ if (passwordForm) {
 }
 
 if (logOutBtn) logOutBtn.addEventListener('click', logout);
+
+if (bookBtn) {
+  const snapScript = 'https://app.sandbox.midtrans.com/snap/snap.js';
+  const clientKey = 'SB-Mid-client-XJvqLGcr0cIcl8zJ';
+
+  const script = document.createElement('script');
+  script.src = snapScript;
+  script.setAttribute('data-client-key', clientKey);
+  script.async = true;
+
+  document.body.appendChild(script);
+
+  bookBtn.addEventListener('click', e => {
+    e.target.textContent = 'Processing...';
+    const { tourId } = e.target.dataset;
+    bookTour(tourId);
+    e.target.textContent = 'Book tour now!';
+  });
+}

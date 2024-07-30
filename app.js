@@ -7,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 const errorController = require('./controllers/errorController');
@@ -14,6 +15,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
 
 const app = express();
 
@@ -32,7 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 const scriptSrcUrls = [
   'https://unpkg.com/',
   'https://tile.openstreetmap.org',
-  'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'
+  'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
+  'https://app.sandbox.midtrans.com'
 ];
 const styleSrcUrls = [
   'https://unpkg.com/',
@@ -53,6 +56,7 @@ app.use(
       defaultSrc: [],
       connectSrc: ["'self'", ...connectSrcUrls],
       scriptSrc: ["'self'", ...scriptSrcUrls],
+      frameSrc: ["'self'", 'https://app.sandbox.midtrans.com'],
       styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
       workerSrc: ["'self'", 'blob:'],
       objectSrc: [],
@@ -99,12 +103,15 @@ app.use(
   })
 );
 
+app.use(compression());
+
 ////////////////////////////////////////////////////////
 //// ROUTES
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 // Undefined Routes
 app.all('*', (req, res, next) => {

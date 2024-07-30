@@ -42,7 +42,7 @@ const sendErrorDev = (err, req, res) => {
   // RENDERED WEBSITE
   console.log('Error: ', err);
   return res.status(err.statusCode).render('error', {
-    title: 'Som ting wong',
+    title: 'Something wrong!',
     msg: err.message
   });
 };
@@ -71,14 +71,14 @@ const sendErrorProd = (err, req, res) => {
   // Operational, trusted error: send message to client
   if (err.isOperational) {
     return res.status(err.statusCode).render('error', {
-      title: 'Som ting wong',
+      title: 'Something wrong!',
       msg: err.message
     });
   }
   // Programming or other unknown error: don't leak error details
   console.log('Error: ', err);
   return res.status(err.statusCode).render('error', {
-    title: 'Som ting wong',
+    title: 'Something wrong!',
     msg: 'Please try again later'
   });
 };
