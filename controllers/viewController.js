@@ -25,7 +25,8 @@ exports.getTour = catchAsync(async (req, res, next) => {
 
   res.status(200).render('tour', {
     title: `${tour.name} Tour`,
-    tour
+    tour,
+    client: process.env.MID_PUBLIC_CLIENT
   });
 });
 

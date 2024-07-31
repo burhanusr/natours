@@ -13,6 +13,7 @@ const logOutBtn = document.querySelector('.nav__el--logout');
 const updateForm = document.querySelector('.form-user-data');
 const passwordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
+const clientBtn = document.getElementById('client');
 
 if (leaflet) {
   const locations = JSON.parse(leaflet.dataset.locations);
@@ -67,7 +68,7 @@ if (logOutBtn) logOutBtn.addEventListener('click', logout);
 
 if (bookBtn) {
   const snapScript = 'https://app.sandbox.midtrans.com/snap/snap.js';
-  const clientKey = 'SB-Mid-client-XJvqLGcr0cIcl8zJ';
+  const { clientKey } = clientBtn.dataset;
 
   const script = document.createElement('script');
   script.src = snapScript;
