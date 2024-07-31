@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://natours-gnf4osccc-burhanusrs-projects.vercel.app">
-    <img src="https://natours-gnf4osccc-burhanusrs-projects.vercel.app/img/logo-green-round.png" alt="Logo" width="80" height="80">
+  <a href="https://natours-three-rho.vercel.app">
+    <img src="https://natours-git-main-burhanusrs-projects.vercel.app/img/logo-green-round.png" alt="Logo" width="80" height="80">
   </a>
 
   <h1 align="center">Natours</h1>
