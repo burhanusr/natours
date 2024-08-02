@@ -57,7 +57,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
       email: req.user.email
     },
     callbacks: {
-      finish: `${req.protocol}://${req.get('host')}/?tour=${
+      finish: `${req.protocol}://${req.get('host')}/my-tours?tour=${
         req.params.tourId
       }&user=${req.user.id}&price=${tour.price}`,
       error: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`

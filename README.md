@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://natours-three-rho.vercel.app">
-    <img src="https://natours-git-main-burhanusrs-projects.vercel.app/img/logo-green-round.png" alt="Logo" width="80" height="80">
+    <img src="https://natours-git-main-burhanusrs-projects.vercel.app/img/logo-green-round.png" alt="Logo" width="100" height="100">
   </a>
 
   <h1 align="center">Natours</h1>
